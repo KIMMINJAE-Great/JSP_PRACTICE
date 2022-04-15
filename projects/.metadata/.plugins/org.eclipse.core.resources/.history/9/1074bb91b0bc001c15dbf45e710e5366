@@ -19,19 +19,6 @@
 </head>
 <body>
 	<%
-	// 현재 세션 상태를 체크한다
-			String userID = null;
-			if(session.getAttribute("userID") != null){
-				userID = (String)session.getAttribute("userID");
-			}
-			// 이미 로그인했으면 회원가입을 할 수 없게 한다
-			if(userID != null){
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('이미 로그인이 되어 있습니다')");
-				script.println("location.href='main.jsp'");
-				script.println("</script>");
-			}
 		if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null
 			|| user.getUserGender() == null || user.getUserEmail() == null) {
 		PrintWriter script = response.getWriter();
@@ -49,7 +36,6 @@
 			script.println("history.back()");
 			script.println("</script>");
 		} else {
-			session.setAttribute("userID", user.getUserID());
 			PrintWriter script = response.getWriter();//result가  -1이 아닌 경우는 전부다 회원가입이 이루어진 경우 이기에 나머지 전부다 아래행으로 오게 한다.
 			script.println("<script>");
 			script.println("alert('회원가입 성공')");
